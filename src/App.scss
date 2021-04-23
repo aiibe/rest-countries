@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,600;0,800;1,300&display=swap");
+
+html,
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+}
+
+// Var
+$very-light-gray: rgba(0, 0, 0, 0.02);
+$shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+$radius: 0.4rem;
+
+// Default
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+main {
+  background-color: $very-light-gray;
+}
+
+// Header
+nav {
+  background-color: white;
+  box-shadow: $shadow;
+  .navbar {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+    }
+  }
+}
+
+// Finder
+.finder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+
+  .search {
+    padding: 2rem 0;
+    input[type="text"] {
+      width: 25rem;
+      font-size: 16px;
+      outline: none;
+      border: 1px solid $very-light-gray;
+      padding: 1rem 2rem;
+      border-radius: $radius;
+      box-shadow: $shadow;
+    }
+  }
+
+  .filter {
+    .button {
+      width: 14rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      cursor: pointer;
+      border: 1px solid $very-light-gray;
+      padding: 1rem 1.6rem;
+      background-color: white;
+      border-radius: $radius;
+      box-shadow: $shadow;
+
+      .icon-right {
+        margin-left: 0.8rem;
+      }
+    }
+  }
+}
+
+// List
+.list {
+  margin: 2rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5rem;
+  padding: 0 2rem;
+
+  .card {
+    overflow: hidden;
+    box-shadow: $shadow;
+    background-color: white;
+    border-radius: $radius;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .card-thumbnail {
+      box-sizing: border-box;
+      img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .card-body {
+      padding: 1.2rem;
+
+      h4 {
+        font-size: 16px;
+        font-weight: 800;
+      }
+    }
+  }
+}
