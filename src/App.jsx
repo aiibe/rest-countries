@@ -1,34 +1,22 @@
 import "./App.scss";
 import Header from "./components/Header";
 import List from "./components/List";
+import Single from "./components/Single";
 import Finder from "./components/Finder";
-import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Countries from "./countries.json";
-
-export default function App() {
-  const [countries, setCountries] = useState([]);
-
-  async function loadCountries() {
-    // const raw = await fetch("https://restcountries.eu/rest/v2/all");
-    // const data = await raw.json();
-    // setCountries(data);
-    setCountries([...Countries]);
-  }
-
-  useEffect(() => {
-    loadCountries();
-  }, []);
-
+export default function App({ countries, setCountries }) {
   return (
     <Router>
       <main>
         <Header />
         <Finder />
         <Switch>
+          <Route path="/:country_name">
+            <Single />
+          </Route>
           <Route path="/">
-            <List items={countries} />
+            <List />
           </Route>
         </Switch>
       </main>

@@ -1,10 +1,47 @@
-export default function List({ items }) {
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import Countries from "../countries.json";
+
+function List() {
+  const history = useHistory();
+  const countries = useSelector((state) => state.countries);
+  const dispatch = useDispatch();
+
+  // Actions
+  function getCountries() {
+    return (dispatch) =>
+      dispatch({ type: "SET_COUNTRIES", payload: [...Countries] });
+  }
+
+  function setSingle(payload) {
+    return (dispatch) => dispatch({ type: "SET_SINGLE", payload });
+  }
+
+  // UEvents
+  function handleOnClick(name) {
+    const country = countries.filter((c) => c.name === name);
+    if (country.length) {
+      setSingle(country[0]);
+      history.push(`/${country[0].name}`);
+    }
+  }
+
+  useEffect(() => {
+    console.log("render List");
+    dispatch(getCountries());
+  }, [dispatch]);
+
   return (
     <div className="container">
       <div className="grid list">
-        {items.map(
+        {countries.map(
           ({ numericCode, flag, name, population, region, capital }) => (
-            <div className="card" key={numericCode}>
+            <div
+              onClick={() => handleOnClick(name)}
+              className="card"
+              key={numericCode}
+            >
               <div className="card-thumbnail">
                 <img src={flag} alt="" />
               </div>
@@ -27,3 +64,5 @@ export default function List({ items }) {
     </div>
   );
 }
+
+export default List;
